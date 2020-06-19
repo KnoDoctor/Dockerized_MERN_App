@@ -1,5 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
 
+//REACT PLAYER
+import ReactPlayer from "react-player";
+
 //CONTEXT
 import { GlobalContext } from "../../context/GlobalState";
 
@@ -102,88 +105,82 @@ export const Home = (props) => {
     };
 
     return (
-        <div class={containerClass}>
-            <h1>{pageName}</h1>
-            <h4>{message}</h4>
-        </div>
-        // <>
-        //     <div>
-        //         <h3>Enter a Subreddit</h3>
-        //         <Paper
-        //             component="form"
-        //             onSubmit={onSubmit}
-        //             className={classes.searchRoot}
-        //         >
-        //             <InputBase
-        //                 className={classes.input}
-        //                 value={subReddit}
-        //                 onChange={(e) => setSubReddit(e.target.value)}
-        //                 placeholder="Search for a Subreddit"
-        //                 inputProps={{ "aria-label": "search for a subreddit" }}
-        //             />
-        //             <IconButton
-        //                 type="submit"
-        //                 className={classes.iconButton}
-        //                 aria-label="search"
-        //             >
-        //                 <SearchIcon />
-        //             </IconButton>
-        //             <Divider
-        //                 className={classes.divider}
-        //                 orientation="vertical"
-        //             />
-        //             <IconButton
-        //                 color="primary"
-        //                 className={classes.iconButton}
-        //                 aria-label="directions"
-        //             >
-        //                 <DirectionsIcon />
-        //             </IconButton>
-        //         </Paper>
-        //         {redditData.map((post) => (
-        //             <Card className={classes.root}>
-        //                 <CardMedia
-        //                     className={classes.cover}
-        //                     image={post.data.thumbnail}
-        //                     title="Live from space album cover"
-        //                 />
-        //                 <div className={classes.details}>
-        //                     <CardContent className={classes.content}>
-        //                         <Typography component="h5" variant="h5">
-        //                             {post.data.title}
-        //                         </Typography>
-        //                         <Typography
-        //                             variant="subtitle1"
-        //                             color="textSecondary"
-        //                         >
-        //                             Submitted by: {post.data.author}
-        //                         </Typography>
-        //                     </CardContent>
-        //                     <div className={classes.controls}>
-        //                         <IconButton aria-label="previous">
-        //                             {theme.direction === "rtl" ? (
-        //                                 <SkipNextIcon />
-        //                             ) : (
-        //                                 <SkipPreviousIcon />
-        //                             )}
-        //                         </IconButton>
-        //                         <IconButton aria-label="play/pause">
-        //                             <PlayArrowIcon
-        //                                 className={classes.playIcon}
-        //                             />
-        //                         </IconButton>
-        //                         <IconButton aria-label="next">
-        //                             {theme.direction === "rtl" ? (
-        //                                 <SkipPreviousIcon />
-        //                             ) : (
-        //                                 <SkipNextIcon />
-        //                             )}
-        //                         </IconButton>
-        //                     </div>
-        //                 </div>
-        //             </Card>
-        //         ))}
-        //     </div>
-        // </>
+        <>
+            <div>
+                <h3>Enter a Subreddit</h3>
+                <Paper
+                    component="form"
+                    onSubmit={onSubmit}
+                    className={classes.searchRoot}
+                >
+                    <InputBase
+                        className={classes.input}
+                        value={subReddit}
+                        onChange={(e) => setSubReddit(e.target.value)}
+                        placeholder="Search for a Subreddit"
+                        inputProps={{ "aria-label": "search for a subreddit" }}
+                    />
+                    <IconButton
+                        type="submit"
+                        className={classes.iconButton}
+                        aria-label="search"
+                    >
+                        <SearchIcon />
+                    </IconButton>
+                    <Divider
+                        className={classes.divider}
+                        orientation="vertical"
+                    />
+                    <IconButton
+                        color="primary"
+                        className={classes.iconButton}
+                        aria-label="directions"
+                    >
+                        <DirectionsIcon />
+                    </IconButton>
+                </Paper>
+                {redditData.map((post) => (
+                    <a href={post.data.url}>
+                        <Card className={classes.root}>
+                            <ReactPlayer url={post.data.url} />
+                            <div className={classes.details}>
+                                <CardContent className={classes.content}>
+                                    <Typography component="h5" variant="h5">
+                                        {post.data.title}
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle1"
+                                        color="textSecondary"
+                                    >
+                                        Submitted by: {post.data.author}
+                                    </Typography>
+                                </CardContent>
+                                <div className={classes.controls}>
+                                    <IconButton aria-label="previous">
+                                        {theme.direction === "rtl" ? (
+                                            <SkipNextIcon />
+                                        ) : (
+                                            <SkipPreviousIcon />
+                                        )}
+                                    </IconButton>
+                                    <IconButton aria-label="play/pause">
+                                        <PlayArrowIcon
+                                            className={classes.playIcon}
+                                        />
+                                    </IconButton>
+                                    <IconButton aria-label="next">
+                                        {theme.direction === "rtl" ? (
+                                            <SkipPreviousIcon />
+                                        ) : (
+                                            <SkipNextIcon />
+                                        )}
+                                    </IconButton>
+                                </div>
+                            </div>
+                        </Card>
+                    </a>
+                ))}
+            </div>
+        </>
     );
 };
