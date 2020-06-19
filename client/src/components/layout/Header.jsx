@@ -9,7 +9,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 //API
 
 //Router
-import { Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -110,6 +110,12 @@ export function Header(props) {
                                 className="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"
                             >
                                 <Link to="/">Home</Link>
+                            </li>
+                            <li
+                                id="menu-item-49"
+                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"
+                            >
+                                <Link to="/about-us">About Us</Link>
                             </li>
                         </ul>
                     </div>

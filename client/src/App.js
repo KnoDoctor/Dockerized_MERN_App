@@ -8,7 +8,7 @@ import { GlobalProvider } from "./context/GlobalState";
 import "./App.css";
 
 //Bring in React Router
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
     return (

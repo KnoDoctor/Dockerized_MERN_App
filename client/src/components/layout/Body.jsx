@@ -5,14 +5,16 @@ import React from "react";
 //API
 
 //COMPONENTS
-import { Home } from "../pages/Home";
+import { Home } from "../_pages/Home";
+import { AboutUs } from "../_pages/AboutUs";
+import { Login } from "../_pages/Login";
 
 //Material-UI Stuff
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 //ROUTER
-import { BrowserRouter as Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //STYLES
 const useStyles = makeStyles(() => ({
@@ -29,55 +31,27 @@ export const Body = () => {
     return (
         <main className={classes.content}>
             <Container fixed maxWidth="md">
-                <h1>This is the Body Title</h1>
                 <Switch>
-                    {/* <Route path={props.appRoutes.Login.url}>
-                <Login pageName={props.appRoutes.Login.pageName} />
-            </Route>
-            <Route path="/trip/:trip" component={Trip}></Route>
-            <Route
-                path="/destination/:continent/:country/:region"
-                component={Destination}
-            ></Route>
-            <Route
-                path="/destination/:continent/:country"
-                component={Destination}
-            ></Route>
-            <Route path={props.appRoutes.About.url}>
-                <About pageName={props.appRoutes.About.pageName} />
-            </Route>
-            <Route path={props.appRoutes.Legacy.url}>
-                <Legacy pageName={props.appRoutes.Legacy.pageName} />
-            </Route>
-            <Route
-                path="/destinations/:continent/:country"
-                component={Country}
-            ></Route>
-            <Route
-                path="/destinations/:continent"
-                component={Continent}
-            ></Route>
-            <Route path={props.appRoutes.Destinations.url}>
-                <Destinations
-                    pageName={props.appRoutes.Destinations.pageName}
-                />
-            </Route>
-            <Route path={props.appRoutes.Experiences.url}>
-                <Experiences
-                    pageName={props.appRoutes.Experiences.pageName}
-                />
-            </Route>
-            <Route
-                path="/experience/:experience"
-                component={Experience}
-            ></Route>
-            <Route path={props.appRoutes.Tripfinder.url}>
-                <Tripfinder
-                    pageName={props.appRoutes.Tripfinder.pageName}
-                />
-            </Route> */}
+                    <Route path={"/about-us"}>
+                        <AboutUs
+                            pageName={"About Us"}
+                            message={"Hello Again :D"}
+                            containerClass={"about-us"}
+                        />
+                    </Route>
+                    <Route path={"/login"}>
+                        <Login
+                            pageName={"Login"}
+                            message={"Hello Again :D :D"}
+                            containerClass={"login"}
+                        />
+                    </Route>
                     <Route path={"/"}>
-                        <Home pageName={""} message={""} containerClass={""} />
+                        <Home
+                            pageName={"Home"}
+                            message={"Hello World"}
+                            containerClass={"home"}
+                        />
                     </Route>
                 </Switch>
             </Container>

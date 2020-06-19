@@ -38,5 +38,5 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://mern_starter_boilerplate_api_server_1:5000"
+    "proxy": "http://dockerize_mern_boilerplate_server_1:5000"
 }
