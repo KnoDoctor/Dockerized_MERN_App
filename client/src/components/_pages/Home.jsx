@@ -140,45 +140,43 @@ export const Home = (props) => {
                     </IconButton>
                 </Paper>
                 {redditData.map((post) => (
-                    <a href={post.data.url}>
-                        <Card className={classes.root}>
-                            <ReactPlayer url={post.data.url} />
-                            <div className={classes.details}>
-                                <CardContent className={classes.content}>
-                                    <Typography component="h5" variant="h5">
-                                        {post.data.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="subtitle1"
-                                        color="textSecondary"
-                                    >
-                                        Submitted by: {post.data.author}
-                                    </Typography>
-                                </CardContent>
-                                <div className={classes.controls}>
-                                    <IconButton aria-label="previous">
-                                        {theme.direction === "rtl" ? (
-                                            <SkipNextIcon />
-                                        ) : (
-                                            <SkipPreviousIcon />
-                                        )}
-                                    </IconButton>
-                                    <IconButton aria-label="play/pause">
-                                        <PlayArrowIcon
-                                            className={classes.playIcon}
-                                        />
-                                    </IconButton>
-                                    <IconButton aria-label="next">
-                                        {theme.direction === "rtl" ? (
-                                            <SkipPreviousIcon />
-                                        ) : (
-                                            <SkipNextIcon />
-                                        )}
-                                    </IconButton>
-                                </div>
-                            </div>
-                        </Card>
-                    </a>
+                    <Card className={classes.root}>
+                        <ReactPlayer light={true} url={post.data.url} />
+                        <div className={classes.details}>
+                            <CardContent className={classes.content}>
+                                <Typography component="h5" variant="h5">
+                                    {post.data.title}
+                                </Typography>
+                                <Typography
+                                    variant="subtitle1"
+                                    color="textSecondary"
+                                >
+                                    Submitted by: {post.data.author}
+                                </Typography>
+                            </CardContent>
+                            {/* <div className={classes.controls}>
+                                <IconButton aria-label="previous">
+                                    {theme.direction === "rtl" ? (
+                                        <SkipNextIcon />
+                                    ) : (
+                                        <SkipPreviousIcon />
+                                    )}
+                                </IconButton>
+                                <IconButton aria-label="play/pause">
+                                    <PlayArrowIcon
+                                        className={classes.playIcon}
+                                    />
+                                </IconButton>
+                                <IconButton aria-label="next">
+                                    {theme.direction === "rtl" ? (
+                                        <SkipPreviousIcon />
+                                    ) : (
+                                        <SkipNextIcon />
+                                    )}
+                                </IconButton>
+                            </div> */}
+                        </div>
+                    </Card>
                 ))}
             </div>
         </>
