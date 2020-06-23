@@ -107,7 +107,7 @@ export const Home = (props) => {
     return (
         <>
             <div>
-                <h3>Enter a Subreddit</h3>
+                <h3>Enter a Subreddit Hello World</h3>
                 <Paper
                     component="form"
                     onSubmit={onSubmit}
