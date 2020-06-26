@@ -1,21 +1,20 @@
 import React, { createContext, useReducer } from "react";
-import AppReducer from "./AppReducer";
+import AboutUsReducer from "./AboutUsReducer";
 import axios from "axios";
 
 //Initial State
 const initialState = {
-    transactions: [],
-    redditData: [],
+    transaction: [],
     error: null,
-    loading: true,
+    isLoading: true,
 };
 
 // Create Context
-export const GlobalContext = createContext(initialState);
+export const AboutUsContext = createContext(initialState);
 
 // Create Provider Component
-export const GlobalProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+export const AboutUsProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(AboutUsReducer, initialState);
 
     // Actions
     async function getTransactions() {
@@ -76,18 +75,17 @@ export const GlobalProvider = ({ children }) => {
     }
 
     return (
-        <GlobalContext.Provider
+        <AboutUsContext.Provider
             value={{
                 transactions: state.transactions,
-                redditData: state.redditData,
                 error: state.error,
-                loading: state.loading,
+                isLoading: state.isLoading,
                 getTransactions,
                 deleteTransaction,
                 addTransaction,
             }}
         >
             {children}
-        </GlobalContext.Provider>
+        </AboutUsContext.Provider>
     );
 };

@@ -1,38 +1,18 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 
 //CONTEXT
-import { GlobalContext } from "../../context/GlobalState";
-
-//API
+import { AboutUsProvider } from "../../context/_pageContext/aboutUsContext/AboutUsContext";
 
 //COMPONENTS
+import AboutUsSection from "../__pageComponents/AboutUsSection";
 
-//Material-UI Stuff
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-//STYLES
-const useStyles = makeStyles((theme) => ({}));
-
-export const AboutUs = (props) => {
-    const { pageName, message, containerClass } = props;
-
-    //Set Component Initial State
-
-    //Styles
-
-    //Use Context
-    const { getTransactions } = useContext(GlobalContext);
-
-    //Fetch Data Load
-    useEffect(() => {
-        getTransactions();
-        //eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
+export default (props) => {
     return (
-        <div class={containerClass}>
-            <h1>{pageName}</h1>
-            <h4>{message}</h4>
-        </div>
+        <AboutUsProvider>
+            <AboutUsSection
+                route={props.route}
+                routerParams={props.routerParams}
+            />
+        </AboutUsProvider>
     );
 };

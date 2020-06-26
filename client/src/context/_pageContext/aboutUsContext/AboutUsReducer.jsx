@@ -3,7 +3,7 @@ export default (state, action) => {
         case "GET_TRANSACTIONS":
             return {
                 ...state,
-                loading: false,
+                isLoading: false,
                 transactions: action.payload,
             };
         case "DELETE_TRANSACTION":
@@ -18,11 +18,6 @@ export default (state, action) => {
                 ...state,
                 error: null,
                 transactions: [...state.transactions, action.payload],
-            };
-        case "REDDIT_ERROR":
-            return {
-                ...state,
-                error: action.payload,
             };
         case "TRANSACTION_ERROR":
             return {

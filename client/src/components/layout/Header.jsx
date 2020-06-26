@@ -2,14 +2,13 @@ import React from "react";
 
 //Material-UI Stuff
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
 
 //COMPONENTS
 
 //API
 
 //Router
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -75,13 +74,16 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export function Header(props) {
+export default function Header(props) {
     const loginState = false;
     const classes = useStyles();
 
+    const { appRoutesArray } = props;
+
+    console.log(appRoutesArray);
+
     return (
         <div className={classes.root}>
-            <CssBaseline />
             <header className="site-header" id="masthead">
                 <div className="site-branding">
                     <Link to="/">
@@ -92,31 +94,28 @@ export function Header(props) {
                     </Link>
                 </div>
                 <nav id="site-navigation" className="main-navigation">
-                    <button
-                        className="menu-toggle"
-                        aria-controls="primary-menu"
-                        aria-expanded="false"
-                    >
-                        Primary Menu
-                    </button>
                     <div className="menu-main-menu-container">
                         <ul
                             id="primary-menu"
                             className="menu nav-menu"
                             aria-expanded="false"
                         >
-                            <li
-                                id="menu-item-49"
-                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"
-                            >
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li
-                                id="menu-item-49"
-                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"
-                            >
-                                <Link to="/about-us">About Us</Link>
-                            </li>
+                            <>
+                                {appRoutesArray.map((route) => {
+                                    if (route.topNav) {
+                                        return (
+                                            <li
+                                                id="menu-item-49"
+                                                className="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"
+                                            >
+                                                <Link to={route.slugPattern}>
+                                                    {route.pageName}
+                                                </Link>
+                                            </li>
+                                        );
+                                    }
+                                })}
+                            </>
                         </ul>
                     </div>
                 </nav>
