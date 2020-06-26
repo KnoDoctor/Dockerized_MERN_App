@@ -1,20 +1,24 @@
 import React from "react";
 
+//Import Layout Components
 import Header from "./components/layout/Header";
-
 import PageSwitch from "./components/layout/PageSwitch";
-import { Footer } from "./components/layout/Footer";
+import Footer from "./components/layout/Footer";
 
-import { GlobalProvider } from "./context/GlobalState";
+//Import Global Provider
+import { GlobalProvider } from "./context/GlobalContext";
 
+//Import Applicaton Styles
 import "./App.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
-//Bring in React Router
+
+//Import React BrowserRouter as Router
 import { BrowserRouter as Router } from "react-router-dom";
 
-//Import Routes
+//Import Application Routes
 import appRoutesArray from "./routes/appRoutesArray";
 
+//Define App Component
 function App() {
     return (
         <GlobalProvider>
@@ -28,4 +32,5 @@ function App() {
     );
 }
 
+//Export Application
 export default App;

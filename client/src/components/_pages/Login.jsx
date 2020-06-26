@@ -2,7 +2,7 @@
 import React, { useContext, useEffect, useState } from "react";
 
 //CONTEXT
-import { GlobalContext } from "../../context/GlobalState";
+import { GlobalContext } from "../../context/GlobalContext";
 
 //API
 
@@ -19,7 +19,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default (props) => {
-    const { route, routerParams, loginState } = props;
+    const { route, routerParams } = props;
+    console.log(routerParams);
+
+    const { loginStatus, getLoginStatus, setLoginStatus } = useContext(
+        GlobalContext
+    );
+
+    const updateLoginStatus = (loginStatus) => {
+        setLoginStatus(loginStatus);
+        getLoginStatus();
+    };
 
     //Styles
     const classes = useStyles();
@@ -28,6 +38,14 @@ export default (props) => {
         <div class={classes.containerClass}>
             <h1>{route.pageName}</h1>
             <h4>{route._uid}</h4>
+            <button
+                onClick={function () {
+                    updateLoginStatus("true");
+                    routerParams.history.goBack();
+                }}
+            >
+                Login
+            </button>
             <div></div>
         </div>
     );

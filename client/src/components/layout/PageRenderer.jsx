@@ -1,27 +1,32 @@
 import React from "react";
 
+//Bring in Page Containers
 import Home from "../_pages/Home";
 import AboutUs from "../_pages/AboutUs";
 import Login from "../_pages/Login";
 
+//Setup Page Container Lookup Object
 const Pages = {
     Home,
     AboutUs,
     Login,
 };
 
-export default (route, routerParams, loginState) => {
-    // component does exist
+//Define and Export PageSwitch Component
+////route = appRoutesArray[i]
+////routerParams = Router component props
+////login
+export default (route, routerParams) => {
+    // If Component Exists in Lookup Array, Render Component
     if (typeof Pages[route.page] !== "undefined") {
         return React.createElement(Pages[route.page], {
             key: route._uid,
             route: route,
             routerParams: routerParams,
-            loginState: loginState,
         });
     }
 
-    // component doesn't exist yet
+    // Else Render Component "Page Has Not Been Created" Component
     return React.createElement(
         () => (
             <div

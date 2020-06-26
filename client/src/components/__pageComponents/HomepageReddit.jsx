@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
 //CONTEXT
-import { GlobalContext } from "../../context/GlobalState";
+import { GlobalContext } from "../../context/GlobalContext";
 import { HomepageContext } from "../../context/_pageContext/homepageContext/HomepageContext";
 
 //COMPONENTS
@@ -24,9 +24,7 @@ import Typography from "@material-ui/core/Typography";
 //STYLES
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: "grid",
-        margin: "1rem 0 1rem 0",
-        gridTemplateColumns: "2fr 4fr",
+        width: "100%",
     },
     details: {
         display: "flex",
@@ -85,12 +83,10 @@ export default () => {
 
     //Fetch Data Load
     useEffect(() => {
-        getRedditData("videos");
+        getRedditData("youtubehaiku");
         getTransactions();
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    console.log(transactions);
 
     //Handle Search Box Submit
     const onSubmit = (e) => {
@@ -106,6 +102,7 @@ export default () => {
             ) : (
                 <div>
                     <h3>Enter a Subreddit</h3>
+                    <br></br>
                     <Paper
                         component="form"
                         onSubmit={onSubmit}
@@ -142,19 +139,6 @@ export default () => {
                     {redditData.map((post) => (
                         <Card className={classes.root}>
                             <ReactPlayer light={true} url={post.data.url} />
-                            <div className={classes.details}>
-                                <CardContent className={classes.content}>
-                                    <Typography component="h5" variant="h5">
-                                        {post.data.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="subtitle1"
-                                        color="textSecondary"
-                                    >
-                                        Submitted by: {post.data.author}
-                                    </Typography>
-                                </CardContent>
-                            </div>
                         </Card>
                     ))}
                 </div>

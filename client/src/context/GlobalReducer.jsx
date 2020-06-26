@@ -3,9 +3,10 @@ export default (state, action) => {
         case "GET_TRANSACTIONS":
             return {
                 ...state,
-                loading: false,
+                isLoading: false,
                 transactions: action.payload,
             };
+
         case "DELETE_TRANSACTION":
             return {
                 ...state,
@@ -28,6 +29,16 @@ export default (state, action) => {
             return {
                 ...state,
                 error: action.payload,
+            };
+        case "GET_LOGIN_STATUS":
+            return {
+                ...state,
+                loginStatus: action.payload,
+            };
+        case "SET_LOGIN_STATUS":
+            return {
+                ...state,
+                loginStatus: action.payload,
             };
         default:
             return state;

@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from "react";
-import AppReducer from "./AppReducer";
+import GlobalReducer from "./GlobalReducer";
 import axios from "axios";
 
 //Initial State
@@ -7,7 +7,8 @@ const initialState = {
     transactions: [],
     redditData: [],
     error: null,
-    loading: true,
+    isLoading: true,
+    loginStatus: "false",
 };
 
 // Create Context
@@ -15,9 +16,29 @@ export const GlobalContext = createContext(initialState);
 
 // Create Provider Component
 export const GlobalProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(AppReducer, initialState);
+    const [state, dispatch] = useReducer(GlobalReducer, initialState);
 
     // Actions
+    ////Login Actions
+    async function getLoginStatus() {
+        const loginStatus = localStorage.getItem("loginStatus");
+        console.log(loginStatus);
+        dispatch({
+            type: "GET_LOGIN_STATUS",
+            payload: loginStatus,
+        });
+    }
+
+    async function setLoginStatus(loginStatus) {
+        localStorage.setItem("loginStatus", loginStatus);
+        console.log(loginStatus);
+        dispatch({
+            type: "SET_LOGIN_STATUS",
+            payload: loginStatus,
+        });
+    }
+
+    ////Transaction Actions
     async function getTransactions() {
         try {
             const res = await axios.get("/api/v1/transactions");
@@ -79,12 +100,14 @@ export const GlobalProvider = ({ children }) => {
         <GlobalContext.Provider
             value={{
                 transactions: state.transactions,
-                redditData: state.redditData,
                 error: state.error,
-                loading: state.loading,
+                isLoading: state.isLoading,
+                loginStatus: state.loginStatus,
                 getTransactions,
                 deleteTransaction,
                 addTransaction,
+                getLoginStatus,
+                setLoginStatus,
             }}
         >
             {children}

@@ -40,6 +40,14 @@ const appRoutesArray = [
         topNav: true,
         sidebar: true,
     },
+    {
+        pageName: "Hello",
+        slugPattern: "/hello",
+        page: "HelloWorld",
+        _uid: "BUYgfdn9trertertdfdfe5",
+        topNav: true,
+        sidebar: false,
+    },
 ];
 
 export default appRoutesArray;
