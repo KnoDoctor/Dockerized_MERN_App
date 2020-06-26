@@ -12,6 +12,7 @@ import { GlobalContext } from "../../context/GlobalContext";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
 import Divider from "@material-ui/core/Divider";
@@ -97,43 +98,49 @@ export default () => {
                             : redditData[0].data.subreddit}
                     </h2>
                     {redditData.map((post) => (
-                        <Card className={classes.root}>
-                            <ReactPlayer light={true} url={post.data.url} />
-                            <div className={classes.details}>
-                                <CardContent className={classes.content}>
-                                    <Typography component="h5" variant="h5">
-                                        {post.data.title}
-                                    </Typography>
-                                    <Typography
-                                        variant="subtitle1"
-                                        color="textSecondary"
-                                    >
-                                        Submitted by: {post.data.author}
-                                    </Typography>
-                                </CardContent>
-                                {/* <div className={classes.controls}>
+                        <a href={post.data.url}>
+                            <Card className={classes.root}>
+                                <CardMedia
+                                    className={classes.cover}
+                                    image={post.data.thumbnail}
+                                    title="Live from space album cover"
+                                />
+                                <div className={classes.details}>
+                                    <CardContent className={classes.content}>
+                                        <Typography component="h5" variant="h5">
+                                            {post.data.title}
+                                        </Typography>
+                                        <Typography
+                                            variant="subtitle1"
+                                            color="textSecondary"
+                                        >
+                                            Submitted by: {post.data.author}
+                                        </Typography>
+                                    </CardContent>
+                                    {/* <div className={classes.controls}>
                                 <IconButton aria-label="previous">
-                                    {theme.direction === "rtl" ? (
-                                        <SkipNextIcon />
+                                {theme.direction === "rtl" ? (
+                                    <SkipNextIcon />
                                     ) : (
                                         <SkipPreviousIcon />
-                                    )}
-                                </IconButton>
-                                <IconButton aria-label="play/pause">
-                                    <PlayArrowIcon
+                                        )}
+                                        </IconButton>
+                                        <IconButton aria-label="play/pause">
+                                        <PlayArrowIcon
                                         className={classes.playIcon}
-                                    />
-                                </IconButton>
-                                <IconButton aria-label="next">
-                                    {theme.direction === "rtl" ? (
-                                        <SkipPreviousIcon />
-                                    ) : (
-                                        <SkipNextIcon />
-                                    )}
-                                </IconButton>
-                            </div> */}
-                            </div>
-                        </Card>
+                                        />
+                                        </IconButton>
+                                        <IconButton aria-label="next">
+                                        {theme.direction === "rtl" ? (
+                                            <SkipPreviousIcon />
+                                            ) : (
+                                                <SkipNextIcon />
+                                                )}
+                                                </IconButton>
+                                            </div> */}
+                                </div>
+                            </Card>
+                        </a>
                     ))}
                 </div>
             )}

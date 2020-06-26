@@ -312,7 +312,7 @@ export default function Header(props) {
                                 }}
                                 to="/"
                             >
-                                Material-UI
+                                EPOCH North
                             </Link>
                         </Typography>
                         <div className={classes.search}>
@@ -321,7 +321,7 @@ export default function Header(props) {
                                     <SearchIcon />
                                 </div>
                                 <InputBase
-                                    placeholder="Search…"
+                                    placeholder="Enter a Subreddit…"
                                     classes={{
                                         root: classes.inputRoot,
                                         input: classes.inputInput,
