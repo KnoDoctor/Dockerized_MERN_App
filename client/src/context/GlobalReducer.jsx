@@ -20,6 +20,13 @@ export default (state, action) => {
                 error: null,
                 transactions: [...state.transactions, action.payload],
             };
+        case "GET_REDDIT_DATA":
+            return {
+                ...state,
+                redditData: action.payload,
+                isLoading: false,
+            };
+
         case "REDDIT_ERROR":
             return {
                 ...state,

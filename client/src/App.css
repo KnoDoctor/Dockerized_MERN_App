@@ -5,7 +5,8 @@
 ## Links
 --------------------------------------------------------------*/
 a {
-    color: #ffffff;
+    color: #000;
+    text-decoration: #000;
 }
 
 /* a:visited {
@@ -15,7 +16,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-    color: #33ccff;
+    color: #000;
 }
 
 a:focus {

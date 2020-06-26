@@ -5,7 +5,6 @@ import ReactPlayer from "react-player";
 
 //CONTEXT
 import { GlobalContext } from "../../context/GlobalContext";
-import { HomepageContext } from "../../context/_pageContext/homepageContext/HomepageContext";
 
 //COMPONENTS
 
@@ -24,7 +23,9 @@ import Typography from "@material-ui/core/Typography";
 //STYLES
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "100%",
+        display: "grid",
+        margin: "1rem 0 1rem 0",
+        gridTemplateColumns: "2fr 4fr",
     },
     details: {
         display: "flex",
@@ -72,28 +73,16 @@ export default () => {
     //Styles
     const classes = useStyles();
 
-    //Set Component Initial State
-    const [subReddit, setSubReddit] = useState("");
-
     //Use Context
-    const { redditData, getRedditData, isLoading } = useContext(
-        HomepageContext
+    const { transactions, getTransactions, redditData, isLoading } = useContext(
+        GlobalContext
     );
-    const { transactions, getTransactions } = useContext(GlobalContext);
 
     //Fetch Data Load
     useEffect(() => {
-        getRedditData("youtubehaiku");
         getTransactions();
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    //Handle Search Box Submit
-    const onSubmit = (e) => {
-        e.preventDefault();
-        getRedditData(subReddit);
-        setSubReddit("");
-    };
 
     return (
         <>
@@ -101,44 +90,49 @@ export default () => {
                 "Loading"
             ) : (
                 <div>
-                    <h3>Enter a Subreddit</h3>
-                    <br></br>
-                    <Paper
-                        component="form"
-                        onSubmit={onSubmit}
-                        className={classes.searchRoot}
-                    >
-                        <InputBase
-                            className={classes.input}
-                            value={subReddit}
-                            onChange={(e) => setSubReddit(e.target.value)}
-                            placeholder="Search for a Subreddit"
-                            inputProps={{
-                                "aria-label": "search for a subreddit",
-                            }}
-                        />
-                        <IconButton
-                            type="submit"
-                            className={classes.iconButton}
-                            aria-label="search"
-                        >
-                            <SearchIcon />
-                        </IconButton>
-                        <Divider
-                            className={classes.divider}
-                            orientation="vertical"
-                        />
-                        <IconButton
-                            color="primary"
-                            className={classes.iconButton}
-                            aria-label="directions"
-                        >
-                            <DirectionsIcon />
-                        </IconButton>
-                    </Paper>
+                    <h2>
+                        Current Subreddit:
+                        {redditData[0] == undefined
+                            ? ""
+                            : redditData[0].data.subreddit}
+                    </h2>
                     {redditData.map((post) => (
                         <Card className={classes.root}>
                             <ReactPlayer light={true} url={post.data.url} />
+                            <div className={classes.details}>
+                                <CardContent className={classes.content}>
+                                    <Typography component="h5" variant="h5">
+                                        {post.data.title}
+                                    </Typography>
+                                    <Typography
+                                        variant="subtitle1"
+                                        color="textSecondary"
+                                    >
+                                        Submitted by: {post.data.author}
+                                    </Typography>
+                                </CardContent>
+                                {/* <div className={classes.controls}>
+                                <IconButton aria-label="previous">
+                                    {theme.direction === "rtl" ? (
+                                        <SkipNextIcon />
+                                    ) : (
+                                        <SkipPreviousIcon />
+                                    )}
+                                </IconButton>
+                                <IconButton aria-label="play/pause">
+                                    <PlayArrowIcon
+                                        className={classes.playIcon}
+                                    />
+                                </IconButton>
+                                <IconButton aria-label="next">
+                                    {theme.direction === "rtl" ? (
+                                        <SkipPreviousIcon />
+                                    ) : (
+                                        <SkipNextIcon />
+                                    )}
+                                </IconButton>
+                            </div> */}
+                            </div>
                         </Card>
                     ))}
                 </div>

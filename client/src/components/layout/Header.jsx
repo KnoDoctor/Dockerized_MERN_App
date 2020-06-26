@@ -113,6 +113,7 @@ export default function Header(props) {
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+    const [subReddit, setSubReddit] = useState("");
 
     const isMenuOpen = Boolean(anchorEl);
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -214,6 +215,8 @@ export default function Header(props) {
         setState({ ...state, [anchor]: open });
     };
 
+    const { appRoutesArray } = props;
+
     const list = (anchor) => (
         <div
             className={clsx(classes.list, {
@@ -223,48 +226,65 @@ export default function Header(props) {
             onClick={toggleDrawer(anchor, false)}
             onKeyDown={toggleDrawer(anchor, false)}
         >
-            <List>
-                {["Inbox", "Starred", "Send email", "Drafts"].map(
-                    (text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    )
-                )}
-            </List>
+            {/* {appRoutesArray.map((route) => {
+                if (route.topNav) {
+                    return (
+                        <li
+                            id="menu-item-49"
+                            className="menu-item menu-item-type-post_type menu-item-object-page menu-item-49"
+                        >
+                            <Link to={route.slugPattern}>
+                                {route.pageName}
+                            </Link>
+                        </li>
+                    );
+                }
+            })} */}
             <Divider />
             <List>
-                {["All mail", "Trash", "Spam"].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                {appRoutesArray.map((route, index) => {
+                    if (route.topNav) {
+                        return (
+                            <Link to={route.slugPattern}>
+                                <ListItem button key={route.pageName}>
+                                    <ListItemIcon>
+                                        {index % 2 === 0 ? (
+                                            <InboxIcon />
+                                        ) : (
+                                            <MailIcon />
+                                        )}
+                                    </ListItemIcon>
+                                    <ListItemText primary={route.pageName} />
+                                </ListItem>
+                            </Link>
+                        );
+                    }
+                })}
             </List>
         </div>
     );
 
-    const { loginStatus, getLoginStatus, setLoginStatus } = useContext(
-        GlobalContext
-    );
+    const {
+        loginStatus,
+        getLoginStatus,
+        setLoginStatus,
+        redditData,
+        getRedditData,
+    } = useContext(GlobalContext);
 
     //Fetch Data Load
     useEffect(() => {
         getLoginStatus();
+        getRedditData("youtubehaiku");
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const updateLoginStatus = (loginStatus) => {
-        setLoginStatus(loginStatus);
-        getLoginStatus();
+    //Handle Search Box Submit
+    const onSubmit = (e) => {
+        e.preventDefault();
+        getRedditData(subReddit);
+        setSubReddit("");
     };
-
-    const { appRoutesArray } = props;
 
     return (
         <>
@@ -285,20 +305,34 @@ export default function Header(props) {
                             variant="h6"
                             noWrap
                         >
-                            Material-UI
+                            <Link
+                                style={{
+                                    color: "#ffffff",
+                                    textDecoration: "none",
+                                }}
+                                to="/"
+                            >
+                                Material-UI
+                            </Link>
                         </Typography>
                         <div className={classes.search}>
-                            <div className={classes.searchIcon}>
-                                <SearchIcon />
-                            </div>
-                            <InputBase
-                                placeholder="Search…"
-                                classes={{
-                                    root: classes.inputRoot,
-                                    input: classes.inputInput,
-                                }}
-                                inputProps={{ "aria-label": "search" }}
-                            />
+                            <form onSubmit={onSubmit}>
+                                <div className={classes.searchIcon}>
+                                    <SearchIcon />
+                                </div>
+                                <InputBase
+                                    placeholder="Search…"
+                                    classes={{
+                                        root: classes.inputRoot,
+                                        input: classes.inputInput,
+                                    }}
+                                    value={subReddit}
+                                    onChange={(e) =>
+                                        setSubReddit(e.target.value)
+                                    }
+                                    inputProps={{ "aria-label": "search" }}
+                                />
+                            </form>
                         </div>
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
@@ -346,7 +380,7 @@ export default function Header(props) {
                 {renderMenu}
             </div>
             <div>
-                {["left", "right", "top", "bottom"].map((anchor) => (
+                {["left", "right", "bottom"].map((anchor) => (
                     <React.Fragment key={anchor}>
                         <SwipeableDrawer
                             anchor={anchor}

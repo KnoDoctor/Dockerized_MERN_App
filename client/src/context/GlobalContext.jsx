@@ -96,16 +96,35 @@ export const GlobalProvider = ({ children }) => {
         }
     }
 
+    ////Get Reddit Data
+    async function getRedditData(subreddit) {
+        try {
+            const res = await axios.get(`/api/v1/reddit/${subreddit}`);
+
+            dispatch({
+                type: "GET_REDDIT_DATA",
+                payload: res.data.posts,
+            });
+        } catch (err) {
+            dispatch({
+                type: "REDDIT_ERROR",
+                payload: err.response.data.error,
+            });
+        }
+    }
+
     return (
         <GlobalContext.Provider
             value={{
                 transactions: state.transactions,
+                redditData: state.redditData,
                 error: state.error,
                 isLoading: state.isLoading,
                 loginStatus: state.loginStatus,
                 getTransactions,
                 deleteTransaction,
                 addTransaction,
+                getRedditData,
                 getLoginStatus,
                 setLoginStatus,
             }}
