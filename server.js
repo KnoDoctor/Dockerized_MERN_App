@@ -41,6 +41,16 @@ if (process.env.NODE_ENV === "production") {
     );
 }
 
+if (process.env.NODE_ENV === "staging") {
+    app.use(express.static("client/staging_build"));
+
+    app.get("*", (req, res) =>
+        res.sendFile(
+            path.resolve(__dirname, "client", "staging_build", "index.html")
+        )
+    );
+}
+
 let PORT;
 
 if (process.env.NODE_ENV === "production") {
