@@ -90,7 +90,7 @@ export default function Footer(props) {
                     <div className="footer-logo-container">
                         <Link to="/">
                             <img
-                                src="http://wwwrebuild.butterfield.com/wp-content/uploads/B&amp;R%20Logo%20-%20White.png"
+                                src="/420-Hz-Logo-White-retina.png"
                                 alt="Logo-White"
                                 className="header-logo"
                             ></img>
