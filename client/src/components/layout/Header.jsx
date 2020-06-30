@@ -312,7 +312,7 @@ export default function Header(props) {
                                 }}
                                 to="/"
                             >
-                                EPOCH North
+                                EPOCH North (Live)
                             </Link>
                         </Typography>
                         <div className={classes.search}>
