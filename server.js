@@ -40,7 +40,13 @@ if (process.env.NODE_ENV === "production") {
     );
 }
 
-const PORT = process.env.PORT || 5000;
+let PORT;
+
+if (process.env.NODE_ENV === "production") {
+    PORT = process.env.PORT || 5000;
+} else {
+    PORT = process.env.PORT || 5001;
+}
 
 app.listen(
     PORT,

@@ -1,7 +1,6 @@
 import React, { createContext, useReducer } from "react";
 import HomepageReducer from "./HomepageReducer";
 import axios from "axios";
-import { API_URL } from "../../../config/ApiConfig";
 
 //Initial State
 const initialState = {
@@ -20,9 +19,7 @@ export const HomepageProvider = ({ children }) => {
     // Actions
     async function getRedditData(subreddit) {
         try {
-            const res = await axios.get(
-                API_URL + `/api/v1/reddit/${subreddit}`
-            );
+            const res = await axios.get(`/api/v1/reddit/${subreddit}`);
 
             dispatch({
                 type: "GET_REDDIT_DATA",

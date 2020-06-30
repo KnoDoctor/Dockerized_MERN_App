@@ -39,5 +39,5 @@
             "last 1 safari version"
         ]
     },
-    "proxy": "http://dockerized_mern_app_server_1:5000"
+    "proxy": "http://dockerized_mern_app_server_1:5001"
 }
