@@ -275,7 +275,7 @@ export default function Header(props) {
     //Fetch Data Load
     useEffect(() => {
         getLoginStatus();
-        getRedditData("youtubehaiku");
+        getRedditData("politics");
         //eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

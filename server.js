@@ -21,6 +21,7 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
+//Manage CORS Settings
 app.use((req, res, next) => {
     res.append("Access-Control-Allow-Origin", ["*"]);
     res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
