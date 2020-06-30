@@ -44,9 +44,11 @@ if (process.env.NODE_ENV === "production") {
 let PORT;
 
 if (process.env.NODE_ENV === "production") {
-    PORT = 5000;
+    PORT = process.env.LIVE_PORT;
+} else if (process.env.NODE_ENV === "development") {
+    PORT = process.env.DEV_PORT;
 } else {
-    PORT = 5001;
+    PORT = process.env.STAGING_PORT;
 }
 
 app.listen(
