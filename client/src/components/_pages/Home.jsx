@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 //COMPONENTS
-import HomepageReddit from "../__pageComponents/HomepageReddit";
+import HomepageReddit from "../pageComponents/HomepageReddit";
 
 export default () => {
     return (

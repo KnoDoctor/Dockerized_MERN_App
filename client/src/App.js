@@ -1,9 +1,9 @@
 import React from "react";
 
 //Import Layout Components
-import Header from "./components/layout/Header";
-import PageSwitch from "./components/layout/PageSwitch";
-import Footer from "./components/layout/Footer";
+import Header from "./components/__layout/Header";
+import PageSwitch from "./components/__layout/PageSwitch";
+import Footer from "./components/__layout/Footer";
 
 //Import Global Provider
 import { GlobalProvider } from "./context/GlobalContext";

@@ -92,7 +92,7 @@ export default () => {
             ) : (
                 <div>
                     <h2>
-                        Current Subreddit:
+                        Current Subreddit222:
                         {redditData[0] == undefined
                             ? ""
                             : redditData[0].data.subreddit}
@@ -117,27 +117,6 @@ export default () => {
                                             Submitted by: {post.data.author}
                                         </Typography>
                                     </CardContent>
-                                    {/* <div className={classes.controls}>
-                                <IconButton aria-label="previous">
-                                {theme.direction === "rtl" ? (
-                                    <SkipNextIcon />
-                                    ) : (
-                                        <SkipPreviousIcon />
-                                        )}
-                                        </IconButton>
-                                        <IconButton aria-label="play/pause">
-                                        <PlayArrowIcon
-                                        className={classes.playIcon}
-                                        />
-                                        </IconButton>
-                                        <IconButton aria-label="next">
-                                        {theme.direction === "rtl" ? (
-                                            <SkipPreviousIcon />
-                                            ) : (
-                                                <SkipNextIcon />
-                                                )}
-                                                </IconButton>
-                                            </div> */}
                                 </div>
                             </Card>
                         </a>

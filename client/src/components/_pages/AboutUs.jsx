@@ -4,7 +4,7 @@ import React from "react";
 import { AboutUsProvider } from "../../context/_pageContext/aboutUsContext/AboutUsContext";
 
 //COMPONENTS
-import AboutUsSection from "../__pageComponents/AboutUsSection";
+import AboutUsSection from "../pageComponents/AboutUsSection";
 
 export default (props) => {
     return (
