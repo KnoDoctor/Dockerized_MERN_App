@@ -32,22 +32,6 @@ const appRoutesArray = [
         topNav: false,
         sidebar: true,
     },
-    {
-        pageName: "Hello World",
-        slugPattern: "/hello-world",
-        page: "HelloWorld",
-        _uid: "BUYgfdn9dfdfe5",
-        topNav: true,
-        sidebar: true,
-    },
-    {
-        pageName: "Hello",
-        slugPattern: "/hello",
-        page: "HelloWorld",
-        _uid: "BUYgfdn9trertertdfdfe5",
-        topNav: true,
-        sidebar: false,
-    },
 ];
 
 export default appRoutesArray;

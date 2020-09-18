@@ -12,6 +12,7 @@ connectDB();
 const transactions = require("./routes/transactionsRouter");
 const tests = require("./routes/testsRouter");
 const reddit = require("./routes/redditRouter");
+const pages = require("./routes/pageRouter");
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use((req, res, next) => {
 app.use("/api/v1/transactions", transactions);
 app.use("/api/v1/tests", tests);
 app.use("/api/v1/reddit", reddit);
+app.use("/api/v1/pages", pages);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));

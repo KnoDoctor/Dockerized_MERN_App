@@ -1,5 +1,4 @@
 const Test = require("../models/Test");
-const axios = require("axios");
 
 // @desc    Get all Tests
 // @route   GET /api/v1/tests
